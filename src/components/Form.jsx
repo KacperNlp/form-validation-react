@@ -6,6 +6,14 @@ import "./Form.css";
 
 const Form = () => {
   const [formElements, setFormElements] = useState([]);
+  const [formProps, setFormProps] = useState();
+
+  const generateStateObject = (data) => {
+    const allKeys = data.map(({ name }) => name);
+    const newformProps = {};
+    allKeys.forEach((name) => (newformProps[name] = ""));
+    setFormProps(newformProps);
+  };
 
   useEffect(() => {
     fetch("./form.json")
@@ -15,20 +23,36 @@ const Form = () => {
       })
       .then((data) => {
         setFormElements(data.form);
+        generateStateObject(data.form);
       })
       .catch((err) => {
         throw new Error(err);
       });
   }, []);
 
-  const formStructure = formElements.map(({ name, type, label, id }) => (
-    <Input key={id} name={name} type={type} label={label} />
-  ));
-
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("Submit form");
   };
+
+  const handleOnInputChange = (e) => {
+    const { value, name } = e.target;
+    setFormProps((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const formStructure = formElements.map(({ name, type, label, id }) => (
+    <Input
+      key={id}
+      name={name}
+      type={type}
+      label={label}
+      value={formProps[name]}
+      onChange={handleOnInputChange}
+    />
+  ));
 
   return (
     <form action="post" className="form" noValidate onSubmit={handleFormSubmit}>
