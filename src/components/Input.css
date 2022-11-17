@@ -1,0 +1,19 @@
+.input-lable {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 350px;
+}
+
+.input-lable input {
+    padding: 10px;
+    background: #000;
+    color: #fff;
+    outline: none;
+    border: 1px solid #fff;
+    transition: .2s;
+}
+
+.input-lable input:focus {
+    background: #222;
+}

@@ -4,5 +4,11 @@
   justify-content: center;
   min-height: 100vh;
   padding: 20px;
-  background: #000;
+  background: rgb(22, 22, 22);
+  color: #fff;
+}
+
+.form-container {
+  padding: 50px 50px;
+  box-shadow: 0 0 20px rgba(0,0,0, .4);
 }

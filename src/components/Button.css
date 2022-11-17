@@ -1,0 +1,13 @@
+.button {
+    padding: 10px 20px;
+    background: saddlebrown;
+    border: 1px solid saddlebrown;
+    color: #fff;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: rgb(22, 22, 22);
+    color: saddlebrown;
+}
